@@ -40,7 +40,21 @@ func seedData(db *gorm.DB) {
 		{
 			ID:       "user2",
 			Name:     "Jane",
-			Email:    "jane@example.com",
+			Email:    "jane@openresty.com",
+			Password: string(hashedPassword),
+			Orgs:     []models.Organization{orgs[0], orgs[1]},
+		},
+		{
+			ID:       "user3",
+			Name:     "Riad",
+			Email:    "riad@openresty.com",
+			Password: string(hashedPassword),
+			Orgs:     []models.Organization{orgs[0], orgs[1]},
+		},
+		{
+			ID:       "user4",
+			Name:     "Tanvir",
+			Email:    "tanvir@tenbyte.com",
 			Password: string(hashedPassword),
 			Orgs:     []models.Organization{orgs[0], orgs[1]},
 		},
