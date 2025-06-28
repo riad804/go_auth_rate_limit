@@ -1,0 +1,37 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    env_file:
+      - .env
+    depends_on:
+      - mysql
+      - redis
+    entrypoint:
+     [
+        "/app/wait-for.sh",
+        "mysql:3306",
+        "--",
+        "/app/wait-for.sh",
+        "redis:6379",
+        "--",
+        "/app/start.sh",
+      ]
+    command: ["/app/main"]
+
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: go_auth_db
+      MYSQL_USER: user
+      MYSQL_PASSWORD: dev2654
+    ports:
+      - "3306:3306"
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
