@@ -14,6 +14,12 @@ import (
 	"gorm.io/gorm"
 )
 
+//	@title			My Go API
+//	@version		1.0
+//	@description	This is a sample API.
+//	@host			localhost:8080
+//	@BasePath		/
+//	@schemes		http
 func main() {
 	fx.New(
 		fx.Provide(
