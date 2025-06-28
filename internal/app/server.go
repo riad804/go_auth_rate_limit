@@ -16,6 +16,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"go.uber.org/fx"
 
+	_ "github.com/riad804/go_auth/docs"
 	swaggerFiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
 )
