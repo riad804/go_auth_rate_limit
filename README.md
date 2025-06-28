@@ -76,3 +76,27 @@ See `.env.example` for all configuration options.
 ## Database
 - MySQL is used for persistent storage
 - Redis is used for session and rate limiting
+
+## Database Seeding
+
+To insert initial organizations and users into your database, use the provided seed script.
+
+### Seed with Docker Compose
+
+After your database is up, run:
+
+```bash
+docker compose run --rm seed
+```
+
+This will wait for MySQL to be ready and then execute `scripts/seed.go` inside a container.
+
+### Seed Locally (without Docker)
+
+Make sure your `.env` and database are configured, then run:
+
+```bash
+go run scripts/seed.go
+```
+
+> **Note:** Only run the seed script in development or test environments. It will insert demo data.

@@ -35,3 +35,26 @@ services:
     image: redis:alpine
     ports:
       - "6379:6379"
+
+  # docker compose run --rm seed
+  seed:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - mysql
+    entrypoint:
+      [
+        "/app/wait-for.sh",
+        "mysql:3306",
+        "--",
+        "go",
+        "run",
+        "scripts/seed.go"
+      ]
+    environment:
+      - DB_HOST=mysql
+      - DB_PORT=3306
+      - DB_USER=user
+      - DB_PASSWORD=dev2654
+      - DB_NAME=go_auth_db

@@ -1,0 +1,45 @@
+@baseUrl = http://localhost:8080
+
+### User Login
+POST {{baseUrl}}/login
+Content-Type: application/json
+
+{
+  "email": "riad@openresty.com",
+  "password": "123456"
+}
+
+### Refresh Token
+POST {{baseUrl}}/refresh
+Content-Type: application/json
+
+{
+  "refresh_token": "YOUR_REFRESH_TOKEN"
+}
+
+### Logout
+POST {{baseUrl}}/logout
+Content-Type: application/json
+
+{
+  "refresh_token": "YOUR_REFRESH_TOKEN"
+}
+
+### Get Current User Info (requires Bearer token)
+GET {{baseUrl}}/me
+Authorization: Bearer YOUR_ACCESS_TOKEN
+
+### Switch Organization (requires Bearer token)
+POST {{baseUrl}}/orgs/switch
+Authorization: Bearer YOUR_ACCESS_TOKEN
+Content-Type: application/json
+
+{
+  "org_id": "org2"
+}
+
+### Health Check
+GET {{baseUrl}}/health
+
+### Swagger Docs
+GET {{baseUrl}}/swagger/index.html
