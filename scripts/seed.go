@@ -9,6 +9,7 @@ import (
 	"github.com/riad804/go_auth/internal/config"
 	"golang.org/x/crypto/bcrypt"
 	"gorm.io/gorm"
+	"gorm.io/gorm/clause"
 )
 
 func main() {
@@ -22,6 +23,7 @@ func main() {
 }
 
 func seedData(db *gorm.DB) {
+	db.Exec("DELETE FROM user_organizations")
 	orgs := []models.Organization{
 		{ID: "org1", Name: "Tenbyte"},
 		{ID: "org2", Name: "OpenResty"},
@@ -61,7 +63,7 @@ func seedData(db *gorm.DB) {
 	}
 
 	for _, org := range orgs {
-		if err := db.Create(&org).Error; err != nil {
+		if err := db.Clauses(clause.OnConflict{DoNothing: true}).Create(&org).Error; err != nil {
 			fmt.Printf("Error seeding org %s: %v\n", org.Name, err)
 		}
 	}
@@ -71,7 +73,7 @@ func seedData(db *gorm.DB) {
 			fmt.Printf("Error seeding user %s: %v\n", user.Name, err)
 		}
 
-		db.Create(&models.UserOrganization{
+		db.Clauses(clause.OnConflict{DoNothing: true}).Create(&models.UserOrganization{
 			UserID:         user.ID,
 			OrganizationID: user.Orgs[0].ID,
 			IsCurrent:      true,

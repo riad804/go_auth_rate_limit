@@ -100,3 +100,55 @@ go run scripts/seed.go
 ```
 
 > **Note:** Only run the seed script in development or test environments. It will insert demo data.
+
+## Example API Requests (rest-api.http)
+
+You can use the provided `rest-api.http` file with the [REST Client extension for VS Code](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) to test the API endpoints easily. Replace `YOUR_ACCESS_TOKEN` and `YOUR_REFRESH_TOKEN` with actual values from your login response.
+
+```http
+@baseUrl = http://localhost:8080
+
+### User Login
+POST {{baseUrl}}/login
+Content-Type: application/json
+
+{
+  "email": "riad@openresty.com",
+  "password": "123456"
+}
+
+### Refresh Token
+POST {{baseUrl}}/refresh
+Content-Type: application/json
+
+{
+  "refresh_token": "YOUR_REFRESH_TOKEN"
+}
+
+### Logout
+POST {{baseUrl}}/logout
+Content-Type: application/json
+
+{
+  "refresh_token": "YOUR_REFRESH_TOKEN"
+}
+
+### Get Current User Info
+GET {{baseUrl}}/me
+Authorization: Bearer YOUR_ACCESS_TOKEN
+
+### Switch Organization
+POST {{baseUrl}}/orgs/switch
+Authorization: Bearer YOUR_ACCESS_TOKEN
+Content-Type: application/json
+
+{
+  "org_id": "org2"
+}
+
+### Health Check
+GET {{baseUrl}}/health
+
+### Swagger Docs
+GET {{baseUrl}}/swagger/index.html
+```

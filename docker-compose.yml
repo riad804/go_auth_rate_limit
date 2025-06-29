@@ -20,7 +20,8 @@ services:
         "--",
         "/app/start.sh",
       ]
-    command: ["/app/main"]
+    # command: ["/app/main"]
+    command: ["air", "-c", ".air.toml"]
 
   mysql:
     image: mysql:8.0

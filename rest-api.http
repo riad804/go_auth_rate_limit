@@ -25,13 +25,13 @@ Content-Type: application/json
   "refresh_token": "YOUR_REFRESH_TOKEN"
 }
 
-### Get Current User Info (requires Bearer token)
+### Get Current User Info
 GET {{baseUrl}}/me
-Authorization: Bearer YOUR_ACCESS_TOKEN
+Authorization: "YOUR_ACCESS_TOKEN"
 
-### Switch Organization (requires Bearer token)
+### Switch Organization
 POST {{baseUrl}}/orgs/switch
-Authorization: Bearer YOUR_ACCESS_TOKEN
+Authorization: "YOUR_ACCESS_TOKEN"
 Content-Type: application/json
 
 {

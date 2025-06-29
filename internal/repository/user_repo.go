@@ -39,7 +39,7 @@ func (r *GormUserRepository) FindByID(id string) (*models.User, error) {
 
 func (r *GormUserRepository) GetCurrentOrg(userID string) (*models.Organization, error) {
 	var userOrg models.UserOrganization
-	if err := r.db.Where("user_id = ? AND is_current = ?", userID, true).First(&userOrg).Error; err != nil {
+	if err := r.db.Where("user_id = ? AND is_current = ?", userID, "true").First(&userOrg).Error; err != nil {
 		return nil, err
 	}
 	var org models.Organization

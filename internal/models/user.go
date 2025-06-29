@@ -25,5 +25,5 @@ type Organization struct {
 type UserOrganization struct {
 	UserID         string `gorm:"primaryKey"`
 	OrganizationID string `gorm:"primaryKey"`
-	IsCurrent      bool
+	IsCurrent      bool   `gorm:"default:true"`
 }
