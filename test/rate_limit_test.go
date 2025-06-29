@@ -19,7 +19,7 @@ func setupTestRedis() *redis.Client {
 	})
 }
 
-func TestRateLimitMiddleware(t *testing.T) {
+func TestRateLimit(t *testing.T) {
 	gin.SetMode(gin.TestMode)
 	client := setupTestRedis()
 	defer client.FlushDB(client.Context())
