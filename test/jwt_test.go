@@ -14,7 +14,7 @@ func (d *dummyConfig) JWTSecret() string              { return "testsecret" }
 func (d *dummyConfig) AccessTokenExp() time.Duration  { return time.Minute }
 func (d *dummyConfig) RefreshTokenExp() time.Duration { return time.Hour }
 
-func TestJWTWrapper_GenerateAndParseToken(t *testing.T) {
+func TestToken(t *testing.T) {
 	jwt := utils.JWTWrapper{
 		SecretKey:       "testsecret",
 		AccessTokenExp:  time.Minute,
@@ -31,7 +31,7 @@ func TestJWTWrapper_GenerateAndParseToken(t *testing.T) {
 	assert.Equal(t, "org1", claims.OrgID)
 }
 
-func TestJWTWrapper_ParseToken_Invalid(t *testing.T) {
+func TestTokenInvalid(t *testing.T) {
 	jwt := utils.JWTWrapper{
 		SecretKey:       "testsecret",
 		AccessTokenExp:  time.Minute,
